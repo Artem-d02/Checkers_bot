@@ -36,13 +36,13 @@ int main()
 			my_field[7][i] = gotg::VALUES_FOR_FIELD::FREE_CAGES;
 		}
 	}
-
+	
 	my_field[3][2] = gotg::VALUES_FOR_FIELD::ENEMY_CHECKERS;
 	my_field[6][3] = gotg::VALUES_FOR_FIELD::FREE_CAGES;
 
 	my_field[4][5] = gotg::VALUES_FOR_FIELD::MY_CHECKERS;
 	my_field[2][5] = gotg::VALUES_FOR_FIELD::FREE_CAGES;
-
+	
 	auto value_turn_finder = [](bt::Eaten_checkers e_checkers) -> double
 	{
 		return static_cast<double>(e_checkers.count_of_enemy_cheakers) - static_cast<double>(e_checkers.count_of_my_cheakers);

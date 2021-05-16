@@ -1,6 +1,8 @@
 #include <iostream>
 #include <array>
 #include <functional>
+#include <vector>
+#include <ctime>
 #include "Turn.h"
 #include "Graph_of_the_game.h"
 
@@ -50,15 +52,25 @@ namespace ch_bot
 			std::cout << turn.get_turn() << std::endl;
 		}
 
-		auto best_turn_info = (*my_analyzer->begin());
+		std::vector<turn::Turn> best_turns;
+		auto best_turn_info = *my_analyzer->begin();
 		for (const auto& turn : *my_analyzer)
 		{
 			if (turn.get_middle_value() > best_turn_info.get_middle_value())
 			{
 				best_turn_info = turn;
+				best_turns.clear();
+			}
+			if (turn.get_middle_value() == best_turn_info.get_middle_value())
+			{
+				best_turns.push_back(turn.get_turn());
 			}
 		}
-		return best_turn_info.get_turn();
+
+		srand(time(0));
+		size_t random_index = rand() % best_turns.size();
+
+		return best_turns[random_index];
 	}
 	
 }	//	namespace ch_bot
